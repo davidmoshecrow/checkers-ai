@@ -1,0 +1,9 @@
+{
+  "name": "checkers-ai",
+  "version": "0.0.0",
+  "description": "checkers-ai",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  }
+}
