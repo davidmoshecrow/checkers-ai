@@ -2,13 +2,28 @@
 
 
 
+class Point{
+    /**
+     * 
+     * @param {number} x 
+     * @param {number} y 
+     */
+    constructor(x,y){
+     this.x = x;
+     this.y = y;
+    }
+}
+
+Array.prototype.clone = function(){
+    return JSON.parse(JSON.stringify(this));
+}
 
 
 module.exports = class CheckersAi {
 
     
     constructor() {
-
+       
         this.black = 1;
         this.white = 2;
 
@@ -55,7 +70,7 @@ module.exports = class CheckersAi {
         this.grid[y, x] = value;
     }
 
-    getMoves(x, y, piece) {
+     getMoves(x, y, piece) {
         switch (piece) {
             case this.black:
                 return this.getBlackMoves(x, y);
@@ -67,10 +82,15 @@ module.exports = class CheckersAi {
                 return this.getWhiteQMoves(x, y);
         }
     }
-
+    /**
+     * 
+     * @param {number} x 
+     * @param {number} y 
+     * @return {Point[]} list of moves
+     */
     getBlackMoves(x, y) {
+        /**@type {Point[]}*/
         let moves = [];
-
         if (y < 7) {
             if (x > 0) {
                 if (this.getPiece(x - 1, y + 1) == 0) {
@@ -86,25 +106,35 @@ module.exports = class CheckersAi {
         return moves;
     }
 
-
+    /**
+     * @description get all moves that a black piece can capture
+     * @param {number} x 
+     * @param {number} y
+     * @returns {Point[]}
+     */
     getBlackCaptureMoves(x, y) {
+        /** @type Point[] */
         let moves = []
         if (y < 6) {
             if (x > 1) {
                 if ((this.getPiece(x - 1, y + 1) == this.white || this.getPiece(x - 1, y + 1) == this.whiteQ) && this.getPiece(x - 2, y + 2) == 0) {
-                    moves.push({ x: x - 2, y: y + 2 });
+                    moves.push(new Point(x - 2,y + 2));
                 }
             }
             if (x < 6) {
                 if ((this.getPiece(x + 1, y + 1) == this.white || this.getPiece(x + 1, y + 1) == this.whiteQ) && this.getPiece(x + 2, y + 2) == 0) {
-                    moves.push({ x: x + 2, y: y + 2 });
+                    moves.push(new Point(x + 2,y + 2));
                 }
             }
         }
 
         return moves;
     }
-
+    /**
+     * 
+     * @param {number} x 
+     * @param {number} y 
+     */
     getWhiteMoves(x, y) {
         let moves = [];
         if (y > 0) {
@@ -122,8 +152,14 @@ module.exports = class CheckersAi {
 
         return moves;
     }
-
+    /**
+     * 
+     * @param {number} x 
+     * @param {number} y 
+     * @returns {Point[]}
+     */
     getWhiteCaptureMoves(x, y) {
+        /** @type Point[] */
         let moves = []
         if (y > 1) {
             if (x > 1) {
@@ -137,10 +173,9 @@ module.exports = class CheckersAi {
                 }
             }
         }
-
         return moves;
     }
-
+     
     getBlackQMoves(x, y) {
         let moves = [];
 
@@ -170,8 +205,14 @@ module.exports = class CheckersAi {
         }
         return moves;
     }
-
+    /**
+     * 
+     * @param {number} x 
+     * @param {number} y 
+     * @returns {Point[]}
+     */
     getBlackQCaptureMoves(x, y) {
+        /** @type Point[]  */
         let moves = [];
         if (y < 6) {
             if (x > 1) {

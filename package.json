@@ -2,7 +2,7 @@
   "name": "checkers-ai",
   "version": "0.0.0",
   "description": "checkers-ai",
-  "main": "main.js",
+  "main": "checkersAi.js",
   "scripts": {
     "test": "jest"
   },
