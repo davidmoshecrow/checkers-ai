@@ -2,8 +2,17 @@
   "name": "checkers-ai",
   "version": "0.0.0",
   "description": "checkers-ai",
-  "main": "app.js",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
   "author": {
-    "name": ""
+    "name": "dovid moshe crow"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
+  },
+  "dependencies": {
+    "@types/jest": "^25.1.4"
   }
 }
